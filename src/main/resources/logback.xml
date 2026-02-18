@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+	<logger name="com.aml.srv.core" level="INFO" />
+	<logger name="ch. qos. Logback" level="WARN" />
+	<logger name="com.codohale.metrics" level="WARN" />
+	<logger name="com.ryantenney " level="WARN" />
+	<logger name="com.sun. xml. internal. bind" level="WARN" />
+	<logger name="com.zaxxer" level="INFO" />
+	<logger name="ong.apache" level="WARN" />
+	<logger name="org.apache. catalina.startup.DigesterFactory " level="OFF" />
+	<logger name="org.hibernate. validator" level="WARN" />
+	<logger name="org.hibernate" level="WARN" />
+	<logger name="org.hibernate. ejb.HibernatePersistence" level="OFF" />
+	<logger name="org.atmosphere" level="WARN" />
+	<logger name="org.springframework" level="WARN" />
+	<logger name="org.springframework.web" level="WARN" />
+	<logger name="org.springframework. boot" level="INFO" />
+	<logger name="org.springframework. security" level="INFO" />
+	<logger name="org.springframework.cache" level="WARN" />
+	<logger name="com.zaxxer. hikari" level="INFO" />
+	<logger name="org.springframework.jdbc" level="INFO" />
+	<logger name="org.thymeleaf" level="WARN" />
+	<logger name="jndi" level="INFO" />
+	<logger name="sun.rmi" level="INFO" />
+	<logger name="org.eclipse. jetty" level="INFO" />
+	<!-- <logger name="com.aml.srv.core" level="DEBUG" /> -->
+
+
+	<contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+		<resetJUL>true</resetJUL>
+	</contextListener>
+	<property name="DEV_HOME" value="./Logs" />
+	<appender name="SYSOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<Pattern>
+				%d{yyyy-MM-dd HH:mm:ss.SSS} %-4relative [%thread] %-5level
+				%logger{35}- %msg%n
+			</Pattern>
+		</encoder>
+	</appender>
+	<appender name="FILE-AUDIT"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${DEV_HOME}/fis-core-api.log</file>
+		<encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+			<layout
+				class="com.aml.srv.core.web.logging.MaskingPatternLayout">
+				<maskPrefix>(password=).{10}|(OTP-).{6}|(ending).{18}</maskPrefix>
+				<Pattern> %d{yyyy-MM-dd HH:mm:ss.SSS} %-4relative [%thread]
+					%-5level %logger{35}- %msg%n </Pattern>
+			</layout>
+		</encoder>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>
+				${DEV_HOME}/%d{yyyy-MM-dd}/fis-core-api.%d{}.%i.log.zip
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+
+
+	<!-- Root Logger -->
+	<root level="INFO">
+		<appender-ref ref="SYSOUT" />
+		<appender-ref ref="FILE-AUDIT" />
+	</root>
+
+	<!-- Logger for specific package -->
+	<logger name="com.aml.srv.core" level="DEBUG" additivity="false">
+		<appender-ref ref="SYSOUT" />
+		<appender-ref ref="FILE-AUDIT" />
+	</logger>
+</configuration>
