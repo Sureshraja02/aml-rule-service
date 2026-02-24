@@ -103,12 +103,8 @@ public class TransactionDetailsRepositryImpl2 {
 			LOGGER.info("REQID : [{}] - Exception found in TransactionDetailsRepositryImpl@ruleOfImmediateWithdraw :{}",
 					reqId, e);
 		} finally {
-			cb = null;
-			predicates = null;
-			cq = null;
-			rootBk = null;
-			LOGGER.info(
-					"REQID : [{}] - TransactionDetailsRepositryImpl@ruleOfImmediateWithdraw method End...........\n\n",
+			cb = null; 	predicates = null; cq = null; rootBk = null;
+			LOGGER.info( "REQID : [{}] - TransactionDetailsRepositryImpl@ruleOfImmediateWithdraw method End...........\n\n",
 					reqId);
 		}
 		return retnVal;

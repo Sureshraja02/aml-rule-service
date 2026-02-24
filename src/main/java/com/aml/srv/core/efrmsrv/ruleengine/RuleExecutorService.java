@@ -41,7 +41,7 @@ public class RuleExecutorService {
 	@Value("${aml.rule.thread.executor.max.pool.size:128}")
 	private Integer maxPoolSize;
 	
-	@Value("${aml.rule.thread.executor.queue.capacity:1000}")
+	@Value("${aml.rule.thread.executor.queue.capacity:2000}")
 	private Integer queueCapacity;
 	
 
@@ -57,7 +57,7 @@ public class RuleExecutorService {
 	List<ConcurrentMessageListenerContainer<String, String>> containers = null;
 	String clazzName = RuleExecutorService.class.getSimpleName();
 
-    @Bean(name = "RuleEngineExecutor")
+    @Bean(name = "RuleEngineExecutor", destroyMethod = "shutdown")
     public Executor ruleEngineThrdExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(corePoolSize);          // baseline threads

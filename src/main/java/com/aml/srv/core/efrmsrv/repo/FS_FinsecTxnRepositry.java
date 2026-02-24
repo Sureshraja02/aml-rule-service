@@ -7,6 +7,6 @@ import com.aml.srv.core.efrmsrv.entity.FS_FinsecTxnEntity;
 import jakarta.data.repository.Repository;
 
 @Repository
-public interface FS_FinsecTxnRepositry<T> extends JpaRepository<FS_FinsecTxnEntity, String> {
+public interface FS_FinsecTxnRepositry<T> extends JpaRepository<FS_FinsecTxnEntity, Integer> {
 
 }

@@ -21,4 +21,13 @@ public class RuleWhizConstants {
 	
 	public static final String VALUE_STR="str";
 	public static final String VALUE_NUM="num";
+	
+	public static final String STR="STR";
+	public static final String CTR="CTR";
+	public static final String NTR="NTR";
+	public static final String CBWTR="CBWTR";
+	public static final String CFTR="CFTR";
+	public static final String OTHER="OTHER";
+	
+	//STR-CTR-NTR-CBWTR-CFTR
 }
