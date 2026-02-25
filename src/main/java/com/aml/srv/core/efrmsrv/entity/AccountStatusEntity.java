@@ -1,7 +1,5 @@
 package com.aml.srv.core.efrmsrv.entity;
 
-import java.time.LocalDate;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
